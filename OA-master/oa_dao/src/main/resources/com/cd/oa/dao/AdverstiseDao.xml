@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cd.oa.dao.AdverstiseDao">
+    <insert id="add" parameterType="com.cd.oa.entity.Adverstise">
+        insert into adverstise(title,context,operater_name,gmt_time,operater_id)
+        VALUES(#{title},#{context},#{operaterName},#{gmtTime},#{operaterId})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.String">
+        delete from adverstise
+        where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="com.cd.oa.entity.Adverstise">
+        update adverstise set
+        title=#{title},
+        context=#{context},
+        operater_name=#{operaterName},
+        gmt_time=#{gmtTime},
+         operater_id=#{operaterId}
+          where id=#{id}
+    </update>
+
+    <select id="selectAdverstiseByMap" parameterType="java.util.Map" resultType="com.cd.oa.entity.Adverstise">
+        select id,title,context,operater_name operaterName,gmt_time gmtTime,operater_id operaterId from adverstise
+        <where>
+            <if test="id!=null and id!=''">
+                and id=#{id}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
